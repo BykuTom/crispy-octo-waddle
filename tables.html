@@ -1,126 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forms and Tables - Forms</title>
-    <style>
-        .animated {
-            animation: spin 5s infinite;
-        }
-
-        @keyframes spin {
-            to {
-
-                transform: rotateX(359deg);
-            }
-        }
-    </style>
-</head>
-
-<body>
+    <link rel="stylesheet" href="CSS/index.css" />
+    <script src="JS/index.js" defer></script>
+  </head>
+  <body>
     <header>
-        <h1>Forms and Tables</h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.html">Forms</a>
-                </li>
-                <li>
-                    <a href="tables.html">Tables</a>
-                </li>
-            </ul>
-        </nav>
+      <h1>Forms and Tables</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">Forms</a>
+          </li>
+          <li>
+            <a href="tables.html">Tables</a>
+          </li>
+        </ul>
+      </nav>
     </header>
     <main>
-        <div class="animated">HI</div>
-        <section>
-            <h2>Forms</h2>
-            <article>
-                <h3>First Form</h3>
-                <!--[ FORM START ]-->
+      <div class="animated">HI</div>
+      <section class="container">
+        <h2>User Generator 3000</h2>
+        <article>
+          <h3>Generate a User</h3>
+          <!--[ FORM START ]-->
+          <section class="section-form">
+            <form id="firstForm" style="display: flex; flex-direction: column">
+              <label for="nameId">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="nameId"
+                placeholder="John Smith"
+              />
 
+              <label for="emailId">email</label>
+              <input
+                type="email"
+                name="email"
+                id="emailId"
+                placeholder="bigjohn@gmail.com"
+              />
 
-                <form id="firstForm" style="display: flex; flex-direction: column;">
-
-                    <label for="nameId">Name</label>
-                    <input type="text" name="name" id="nameId" placeholder="John Smith">
-
-                    <label for="emailId">email</label>
-                    <input type="email" name="email" id="emailId" placeholder="bigjohn@gmail.com">
-
-                    <label for="passwordId">password</label>
-                    <input type="password" name="password" id="passwordId" placeholder="StronkAsHeck123!">
-
-                    <button type="submit">Submit</button>
-                </form>
-                <table id="usersTable">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-
-                <!--[ FORM END ]-->
-            </article>
-        </section>
+              <label for="passwordId">password</label>
+              <input
+                type="password"
+                name="password"
+                id="passwordId"
+                placeholder="StronkAsHeck123!"
+              />
+              <button type="submit" data-button="Submit">Submit</button>
+            </form>
+          </section>
+          <table id="usersTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <!--[ FORM END ]-->
+        </article>
+      </section>
     </main>
-    <script defer>
-        const users = []
-        const firstForm = document.querySelector('#firstForm')
-
-        const createRow = (user) => {
-            const row = document.createElement('tr')
-            const nameCol = document.createElement('td')
-            const emailCol = document.createElement('td')
-            const passwordCol = document.createElement('td')
-
-            nameCol.textContent = user.name
-            emailCol.textContent = user.email
-            passwordCol.textContent = user.password
-
-            row.appendChild(nameCol)
-            row.appendChild(emailCol)
-            row.appendChild(passwordCol)
-
-            return row
-        }
-
-        const renderUsers = (tableId) => {
-            const table = document.querySelector(`#${tableId} tbody`)
-            table.innerHTML = ''
-            const rows = users.map(createRow)
-
-            rows.forEach(row => {
-                table.appendChild(row)
-            })
-
-        }
-
-        firstForm.addEventListener('submit', (event) => {
-
-            event.preventDefault()
-
-            const { name, email, password } = event.target.elements
-
-            users.push({
-                name: name.value,
-                email: email.value,
-                password: password.value
-            })
-
-            console.log(users)
-
-            renderUsers('usersTable')
-        })
-    </script>
-</body>
-
+  </body>
 </html>
